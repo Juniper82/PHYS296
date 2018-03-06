@@ -119,11 +119,12 @@ for f,F in zip(range(len(pTdatmod)),pTdatmod):
 #                print(databin)
                 ax.errorbar(databin['pT'],databin['value'],yerr=databin['delta'],capsize=6,linestyle="")
                 if k == 5:
-                    
+                    ax.set_xlabel(r"$p_T$ (GeV)")
                     ax.set_yscale('log')
                     ax.set_yticklabels("")  
                 else:
-                    ax.set_yscale("log")  
+                    ax.set_yscale("log") 
+                    ax.set_xlabel(r"$p_T$ (GeV)")
 pp = PdfPages('mod1000zk.pdf')
 pp.savefig(fig1)
 pp.close()                                 
