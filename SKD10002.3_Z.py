@@ -54,10 +54,10 @@ innerGrid=gridspec.GridSpecFromSubplotSpec(5, 6, subplot_spec=globalGrid[0], wsp
 
 # figure properties:
 ax=fig2.add_axes([0,0,1,1]) # axas for subplot matrix as percent of hole
-ax.yaxis.set_ticks([0,0.023,0.04,0.055,0.075,0.1,0.14,0.2,0.3,0.4,0.6]) # xy-ticks marks / grid lines:
-ax.xaxis.set_ticks([0,1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 3.0, 5.0, 15.0]) # guess and check method
-ax.set_xticklabels([0]+xBin) # xy-tick lables 
-ax.set_yticklabels([0]+Q2Bin) 
+ax.yaxis.set_ticks([0,1.25,2.76,4.27,5.78,7.29,8.8,10])
+ax.xaxis.set_ticks([0,1.25,2.54,3.83,5.12,6.42,7.7,9,10 ])
+xticklabels = np.array([0,0.023,0.04,0.055,0.075,0.1,0.14,0.2,0.3,0.4,0.6]) 
+yticklabels = np.array([0,1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 3.0, 5.0, 15.0])
 ax.set_xlabel(r"$x$ bins") # xy-lables
 ax.set_ylabel(r"$Q^2$ bins",rotation="horizontal")
 ax.grid() # grid on
