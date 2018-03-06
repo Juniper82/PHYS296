@@ -58,6 +58,8 @@ ax.yaxis.set_ticks([0,1.25,2.76,4.27,5.78,7.29,8.8,10])
 ax.xaxis.set_ticks([0,1.25,2.54,3.83,5.12,6.42,7.7,9,10 ])
 xticklabels = np.array([0,0.023,0.04,0.055,0.075,0.1,0.14,0.2,0.3,0.4,0.6]) 
 yticklabels = np.array([0,1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 3.0, 5.0, 15.0])
+ax.set_yticklabels(yticklabels)
+ax.set_xticklabels(xticklabels)
 ax.set_xlabel(r"$x$ bins") # xy-lables
 ax.set_ylabel(r"$Q^2$ bins",rotation="horizontal")
 ax.grid() # grid on
@@ -121,83 +123,4 @@ for f,F in zip(range(len(pTdatmod)),pTdatmod):
                 else:
                     ax.set_yscale("log") # set y-ax log scale
                     ax.set_xlabel(r"$p_T$ (GeV)") # x lable for subplots
-                                
-                
-                
-                
-                
-                
-
-###############
-# HermesPlot ##
-###############  Reduced matix 
-fig2=py.figure(figsize=(15, 15),facecolor="gray")
-ax=fig2.add_axes([0,0,1,1])
-ax.yaxis.set_ticks([0,0.023,0.04,0.055,0.075,0.1,0.14,0.2,0.3,0.4,0.6])
-ax.xaxis.set_ticks([0,1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 3.0, 5.0, 15.0])
-ax.set_yticklabels([0]+Q2Bin)
-ax.set_xticklabels([0]+xBin)
-globalGrid=gridspec.GridSpec(1, 1, wspace=0.0, hspace=0.0) #the axis to put subplot grid in
-innerGrid=gridspec.GridSpecFromSubplotSpec(5, 6, subplot_spec=globalGrid[0], wspace=0.0, hspace=0.0)
-Zcolor=["red","green","blue","orange","purple","brown"]
-Zmark=["o","o","o","o"]
-#Zline=[':','-.','--','-']
-Zpatch1 = mpatches.Patch(color=Zcolor[0], label='zbin 0')
-Zpatch2 = mpatches.Patch(color=Zcolor[1], label='zbin 1')
-Zpatch3 = mpatches.Patch(color=Zcolor[2], label='zbin 2')
-Zpatch4 = mpatches.Patch(color=Zcolor[3], label='zbin 3')
-Zpatch5 = mpatches.Patch(color=Zcolor[4], label='zbin 4')
-Zpatch6 = mpatches.Patch(color=Zcolor[5], label='zbin 5')
-ax.legend(handles=[Zpatch1,Zpatch2,Zpatch3,Zpatch4,Zpatch5,Zpatch6],loc='upper left')
-ax.grid()
-ax.set_ylabel(r"$Q^2$ bins",rotation="horizontal")
-ax.set_xlabel(r"$x$ bins")
-
-pTdatmod=[0,2,3,5,6,8] # Q2bins that overlap xBins
-valuedatmod=[0,2,3,6,8] # xBins that overlap Q2Bins
-num = 0
-for f,F in zip(range(len(pTdatmod)),pTdatmod):       
-    for j,J in zip(range(len(valuedatmod)),valuedatmod):
-        if j == 4:
-            k = int(f) # kth possition for subplot on innerGrid matrix
-            maskX = dat['xBin'].isin([J]) # retruns bolinan for all Jth xBin in dat  
-            maskY = dat['Q2Bin'].isin([F]) # retruns bolinan for all Fth Q2Bin in dat
-        elif j == 3:
-            k = 6 + int(f)
-            maskX = dat['xBin'].isin([J]) 
-            maskY = dat['Q2Bin'].isin([F])
-        elif j == 2:
-            k = 12 + int(f)
-            maskX = dat['xBin'].isin([J]) 
-            maskY = dat['Q2Bin'].isin([F])
-        elif j == 1:
-            k = 18 + int(f)
-            maskX = dat['xBin'].isin([J]) 
-            maskY = dat['Q2Bin'].isin([F])
-        elif j == 0:
-            k = 24 + int(f)
-            maskX = dat['xBin'].isin([J]) 
-            maskY = dat['Q2Bin'].isin([F])
-        ax = fig2.add_subplot(innerGrid[k]) # add subplot in innerGrid
-        xydat = dat[maskX & maskY] # subset of data for Jth xBin and Fth Q2Bin
-        for z in range(len(zBin)-1): 
-            maskZ = xydat["zBin"].isin([z])
-            databin = xydat[maskZ]
-#            xdat  = pTdatmod[f].iloc[z[column]].dropna()
-#            ydat = valuedatmod[j].iloc[z[column]].dropna()
-#            ddat = dat['delta'].iloc[z[column]].dropna()
-#            databin = pd.DataFrame({'x':xdat,'y':ydat,'d':ddat}).dropna()
-            
-            if databin.empty:
-                num += 1
-                ax.set_yticklabels('')
-                ax.set_xticklabels('')
-                pass
-            else:
-                print('xbin = ' + str(f))
-                print('ybin = ' + str(j))
-                print('k = ' + str(k))
-#                print('bin'+ str(i))
-                print(databin)
-                ax.errorbar(databin['pT'],databin['value'],yerr=databin['delta'],capsize=6,linestyle="")
-                ax.set_yscale("log")          
+                                  
