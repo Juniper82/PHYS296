@@ -20,8 +20,8 @@ from matplotlib.backends.backend_pdf import PdfPages
 #####################
 # reading the data ##
 #####################
-#dat=pd.read_excel('E:/Laptop/School/Interships/Dr_Prokudin/Juniper82/PHYS296/dat/expdat/1000.xlsx');
-dat=pd.read_excel('C:/Users/Dolam/Documents/Scott/1000.xlsx');
+dat=pd.read_excel('C:/Users/Tiffany/Documents/Github/PHYS296/dat/expdat/1000.xlsx');
+#dat=pd.read_excel('C:/Users/Dolam/Documents/Scott/1000.xlsx');
 ######################
 # Calculated values ##
 ######################
@@ -57,7 +57,7 @@ innerGrid=gridspec.GridSpecFromSubplotSpec(5, 6, subplot_spec=globalGrid[0], wsp
 ax=fig1.add_axes([0,0,1,1]) # axas for subplot matrix as percent of hole
 ax.yaxis.set_ticks([0,1.25,2.76,4.27,5.78,7.29,8.8,10])
 ax.xaxis.set_ticks([0,1.25,2.54,3.83,5.12,6.42,7.7,9,10 ])
-xticklabels = np.array([0,0.023,0.04,0.055,0.075,0.1,0.14,0.2,0.3,0.4,0.6]) 
+xticklabels = np.array(['','[0,0.023)','[0.04,0.055)','[0.055,0.075)','[0.1,0.14)','[0.14,0.1)','[0.4,0.6)']) 
 yticklabels = np.array([0,1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 3.0, 5.0, 15.0])
 ax.set_yticklabels(yticklabels)
 ax.set_xticklabels(xticklabels)
@@ -125,6 +125,6 @@ for f,F in zip(range(len(pTdatmod)),pTdatmod):
                 else:
                     ax.set_yscale("log") 
                     ax.set_xlabel(r"$p_T$ (GeV)")
-pp = PdfPages('mod1000zk.pdf')
-pp.savefig(fig1)
-pp.close()                                 
+#pp = PdfPages('mod1000zk.pdf')
+#pp.savefig(fig1)
+#pp.close()                                 
