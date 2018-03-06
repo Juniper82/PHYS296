@@ -48,12 +48,12 @@ valuedatmod=[0,2,3,6,8] # Q2bins that overlap xBins
 # HermesPlot ##
 ###############  Reduced matix 
 # initialize the figure
-fig2=py.figure(figsize=(15, 15),facecolor="gray") # figsize; wxh in inche
+fig1=py.figure(figsize=(15, 15),facecolor="gray") # figsize; wxh in inche
 globalGrid=gridspec.GridSpec(1, 1, wspace=0.0, hspace=0.0) # plot for subplot matrix as 1x1 matrix
 innerGrid=gridspec.GridSpecFromSubplotSpec(5, 6, subplot_spec=globalGrid[0], wspace=0.0, hspace=0.0) # 5x6 subplot grid 
 
 # figure properties:
-ax=fig2.add_axes([0,0,1,1]) # axas for subplot matrix as percent of hole
+ax=fig1.add_axes([0,0,1,1]) # axas for subplot matrix as percent of hole
 ax.yaxis.set_ticks([0,1.25,2.76,4.27,5.78,7.29,8.8,10])
 ax.xaxis.set_ticks([0,1.25,2.54,3.83,5.12,6.42,7.7,9,10 ])
 xticklabels = np.array([0,0.023,0.04,0.055,0.075,0.1,0.14,0.2,0.3,0.4,0.6]) 
@@ -100,7 +100,7 @@ for f,F in zip(range(len(pTdatmod)),pTdatmod):
             k = 24 + int(f)
             maskX = dat['xBin'].isin([F]) 
             maskY = dat['Q2Bin'].isin([J])
-        ax = fig2.add_subplot(innerGrid[k]) # add subplot in innerGrid
+        ax = fig1.add_subplot(innerGrid[k]) # add subplot in innerGrid
         xydat = dat[maskX & maskY] # subset of data for Jth xBin and Fth Q2Bin
         for z in range(len(zBin)-1): 
             maskZ = xydat["zBin"].isin([z])
@@ -123,4 +123,6 @@ for f,F in zip(range(len(pTdatmod)),pTdatmod):
                 else:
                     ax.set_yscale("log") # set y-ax log scale
                     ax.set_xlabel(r"$p_T$ (GeV)") # x lable for subplots
-                                  
+pp = PdfPages('mod1000zk.pdf')
+pp.savefig(fig1)
+pp.close()                                 
