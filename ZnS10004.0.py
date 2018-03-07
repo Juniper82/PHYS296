@@ -14,9 +14,10 @@ from matplotlib import pyplot as py
 import matplotlib.gridspec as gridspec
 import matplotlib.patches as mpatches
 from matplotlib.backends.backend_pdf import PdfPages
+import timeit
 # enable plots in the notebook
 #%matplotlib inline
-
+start = timeit.timeit() # start timer
 #####################
 # reading the data ##
 #####################
@@ -132,3 +133,6 @@ for f,F in zip(range(len(pTdatmod)),pTdatmod):
 #pp = PdfPages('mod1000zk.pdf')
 #pp.savefig(fig1)
 #pp.close()                                 
+end = timeit.timeit() # stop timer
+dt = start - end # change in time to runn 
+print dt
