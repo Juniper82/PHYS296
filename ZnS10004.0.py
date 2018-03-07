@@ -14,9 +14,8 @@ from matplotlib import pyplot as py
 import matplotlib.gridspec as gridspec
 import matplotlib.patches as mpatches
 from matplotlib.backends.backend_pdf import PdfPages
-import timeit
-from datetime import datetime 
-
+import time
+start_time = time.time()
 # enable plots in the notebook
 #%matplotlib inline
 start_timeit,start_datetime = timeit.timeit(),datetime.now(); # start timer
@@ -136,7 +135,4 @@ for f,F in zip(range(len(pTdatmod)),pTdatmod):
 #pp = PdfPages('mod1000zk.pdf')
 #pp.savefig(fig1)
 #pp.close()                                 
-elapsed_timeit,elapsed_datetime  = [timeit.timeit() - start_timeit ],[datetime.now() - start_datetime] # stop timer
-
-print('Time elapsed by datetime (hh:mm:ss.ms) {}'.format(elapsed_datetime))
-print ('Time elapsed by timeit'+ str(elapsed_timeit))
+print("---Time elapsed: %s seconds ---" % (time.time() - start_time))
