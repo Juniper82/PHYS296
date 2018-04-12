@@ -10,10 +10,12 @@ Created on Tue Mar  6 17:39:19 2018
 ############
 import pandas as pd
 import numpy as np
+
 from matplotlib import pyplot as py
 import matplotlib.gridspec as gridspec
 import matplotlib.patches as mpatches
 from matplotlib.backends.backend_pdf import PdfPages
+
 # enable plots in the notebook
 #%matplotlib inline
 
@@ -22,8 +24,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 #####################
 #dat=pd.read_excel('E:/Laptop/School/Interships/Dr_Prokudin/Juniper82/PHYS296/dat/expdat/1000.xlsx');
 #dat=pd.read_excel('C:/Users/Aardvark/Documents/GIT/Juniper82/PHYS296/dat/expdat/1000.xlsx');
-dat=pd.read_excel('C:/Users/Tiffany/Documents/Github/Juniper82/PHYS296/dat/expdat/1000.xlsx');
-#dat=pd.read_excel('C:/Users/Dolam/Documents/Scott/1000.xlsx');
+dat=pd.read_excel('C:/Users/Dolam/Documents/Scott/1000.xlsx');
 ######################
 # Calculated values ##
 ######################
@@ -53,8 +54,8 @@ valuedatmod=[0] # Q2bins that overlap xBins
 # HermesPlot ##
 ###############  Reduced matix 
 # initialize the figure
-fig1=py.figure(figsize=(15, 2.5),facecolor="white") # figsize; wxh in inche
-globalGrid=gridspec.GridSpec(1, 1, wspace=0.0, hspace=0.0) # plot for subplot matrix as 1x1 matrix
+fig1=py.figure(figsize=(18, 4),facecolor="white") # figsize; wxh in inche
+globalGrid=gridspec.GridSpec(1, 1,left=0.03,right=1,top=.91,bottom=.115, wspace=0.0, hspace=0.0) # plot for subplot matrix as 1x1 matrix
 innerGrid=gridspec.GridSpecFromSubplotSpec(1,5 , subplot_spec=globalGrid[0], wspace=0.0, hspace=0.0) # 5x6 subplot grid 
 
 # figure properties:
@@ -70,7 +71,7 @@ ax.set_ylabel(r"$Q^2$",rotation="horizontal",labelpad = 15)
 #ax.grid() # grid currently off
 
 # subplot axis proerties (unused)
-Zcolor=['#F74902',"green","blue",'orange',"purple","brown",'#093162','#4b5320']
+Zcolor=['#F74902',"green","blue",'orange',"#7851a9","brown",'#093162','#4b5320']
 Zmark=["o","o","o","o"]
 
 # Set legend
@@ -91,8 +92,8 @@ Zpatch8 = mpatches.Patch(color=Zcolor[7], label='0.8<z<1.1')
 #borderaxespad=10
           
 ax.legend(handles=[Zpatch1,Zpatch2,Zpatch3,Zpatch4,Zpatch5,Zpatch6,Zpatch7,Zpatch8],
-          loc='upper right',
-          ncol=1,prop={'size': 9}
+          loc='upper center',
+          ncol=8,prop={'size': 9}
           )
           #loc='best')
 #borderaxespad=10
@@ -112,16 +113,16 @@ for f,F in zip(range(len(pTdatmod)),pTdatmod):
             
             if f != 0:
                 ax.errorbar(databin['pT'],databin['value'],yerr=databin['delta'],capsize=5,linestyle="",color = Zcolor[z],elinewidth=1.25)
-                ax.set_xlabel(r"$p_T$ (GeV)")
+                ax.set_xlabel(r"$p_T$ (GeV)",labelpad=1)
                 ax.set_yticklabels('')
                
             else:
                 ax.errorbar(databin['pT'],databin['value'],yerr=databin['delta'],capsize=5,linestyle="", color = Zcolor[z],elinewidth=1.25)
                 
-                ax.set_xlabel(r"$p_T$ (GeV)")
+                ax.set_xlabel(r"$p_T$ (GeV)",labelpad=1)
                 ax.set_yscale('log')
                 
-               
+             
 #pp = PdfPages('mod1000zk.pdf')
 #pp.savefig(fig1)
 #pp.close()                                 
